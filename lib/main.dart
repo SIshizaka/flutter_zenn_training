@@ -12,6 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      /// The `theme: ThemeData(` in the `MaterialApp` widget is used to define the overall theme of the
+      /// application. It allows you to customize the visual aspects of your app such as colors,
+      /// typography, shapes, and more. In this specific code snippet, the `theme` property is being set
+      /// to a `ThemeData` object that includes a `colorScheme` and sets `useMaterial3` to true.
       theme: ThemeData(
         // This is the theme of your application.
         //
