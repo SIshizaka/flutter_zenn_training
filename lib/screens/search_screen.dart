@@ -18,6 +18,9 @@ class _SearchScreenState extends State<SearchScreen> {
     // これを使用することで、アプリケーションの基本的なレイアウトを設定できます。
     return Scaffold(
       // appBarプロパティには、Scaffoldの上部に表示されるタイトルやボタンなどを管理するためのコンポーネントを指定します。
+      // Scaffold ウィジェット内の AppBar プロパティは、スクリーンの上部に表示されるアプリバーを指定するために使用されます。
+      // 例えば `appBar: AppBar(title: const Text('Qiita Search'))` と設定しているため、
+      // SearchScreen が描画された際、アプリバーの上端には 'Qiita Search'というタイトルが表示されます。
       appBar: AppBar(title: const Text('Qiita Search')
           // これは、SearchScreenのタイトルとしてQiita Searchという文字列を設定しています。
           ),
