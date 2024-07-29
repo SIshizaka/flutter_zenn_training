@@ -19,6 +19,8 @@ class SearchScreen extends StatefulWidget {
 // _SearchScreenStateはSearchScreenのStateを表します。
 class _SearchScreenState extends State<SearchScreen> {
   // StatelessWidgetではStatelessWidgetですが、StatefulWidgetであるためstateを持つ必要があります。
+  // 検索結果を格納する変数
+  List<Article> articles = [];
   @override
   Widget build(BuildContext context) {
     // ScaffoldはMaterial Designの基本的なレイアウトコンポーネントです。
@@ -28,11 +30,35 @@ class _SearchScreenState extends State<SearchScreen> {
       // 例えば `appBar: AppBar(title: const Text('Qiita Search'))` と設定しているため、
       // SearchScreen が描画された際、アプリバーの上端には 'Qiita Search'というタイトルが表示されます。
       appBar: AppBar(title: const Text('Qiita Search')
-          // これは、SearchScreenのタイトルとしてQiita Searchという文字列を設定しています。
           ),
-      // bodyプロパティには、Scaffoldの主体部分のWidgetを指定します。
-      // これは、SearchScreenの主要な内容を表すWidgetです。
-      body: Container(),
+      body: Column(
+        children: [
+          //検索ボックス
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 12,
+              horizontal: 36,
+            ),
+            child: TextField(
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+              ),
+              // プレースホルダー
+              decoration: InputDecoration(hintText: '検索ワードを入力してください'),
+              // Enter押下時に画面から入力を受け取る
+              onSubmitted: (String value) async {
+                // 検索処理を実行する
+                final results = await searchQiita(value);
+                // 検索結果を代入
+                setState(() => articles = results);
+              },
+            ),
+          )
+          //検索結果一覧
+        ],
+      ),
+
     );
   }
   Future<List<Article>> searchQiita(String keyword) async {
